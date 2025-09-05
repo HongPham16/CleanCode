@@ -12,7 +12,8 @@ public class BadSchoolProgram
     {
         List<string> students = new List<students>();
         
-        List<string> teachers = new List<string>();
+        List<string> teachers = new List<teachers>();
+        
         List<string> courses = new List<string>();
         List<string> enrollments = new List<string>();
         List<string> grades = new List<string>();
