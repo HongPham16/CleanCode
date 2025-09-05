@@ -101,17 +101,11 @@ public class BadSchoolProgram {
                             }
                         }
                     } else if (smenu == 7) {
-                        for (int i = 0; i < students.size(); i++) {
-                            for (int j = 0; j < students.size() - 1; j++) {
-                                String[] p1 = students.get(j).split("\\|");
-                                String[] p2 = students.get(j + 1).split("\\|");
-                                if (p1[1].compareTo(p2[1]) > 0) {
-                                    String tmp = students.get(j);
-                                    students.set(j, students.get(j + 1));
-                                    students.set(j + 1, tmp);
-                                }
-                            }
-                        }
+                        students.sort((sv1, sv2) -> {
+                        String ten1 = sv1.split("\\|")[1];
+                        String ten2 = sv2.split("\\|")[1];
+                        return ten1.compareTo(ten2);
+                        });
                         System.out.println("Da sap xep theo ten.");
                     } else if (smenu == 8) {
                         for (int i = 0; i < students.size(); i++) {

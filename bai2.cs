@@ -63,15 +63,8 @@ public class BadSchoolProgram
                     {
                         Console.Write("Nhap id can xoa: ");
                         string id = Console.ReadLine();
-                        for (int i = 0; i < students.Count; i++)
-                        {
-                            string[] parts = students[i].Split('|');
-                            if (parts[0] == id)
-                            {
-                                students.RemoveAt(i);
-                                break;
-                            }
-                        }
+                        students.RemoveAll(sv => sv.Split('|')[0] == id);
+                        Console.WriteLine("Da xoa sinh vien (neu tim thay).");
                     }
                     else if (smenu == 3)
                     {
