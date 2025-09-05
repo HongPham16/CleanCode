@@ -10,7 +10,8 @@ public class BadSchoolProgram
 {
     public static void Main(string[] args)
     {
-        List<string> students = new List<string>();
+        List<string> students = new List<students>();
+        
         List<string> teachers = new List<string>();
         List<string> courses = new List<string>();
         List<string> enrollments = new List<string>();
