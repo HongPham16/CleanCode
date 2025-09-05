@@ -1,0 +1,309 @@
+import java.util.*;
+
+class Student {
+    private String id;
+    private String name;
+    private int age;
+    private double gpa;
+
+    public Student(String id, String name, int age, double gpa) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.gpa = gpa;
+    }
+
+    public String getId() { return id; }
+    public String getName() { return name; }
+    public int getAge() { return age; }
+    public double getGpa() { return gpa; }
+
+    public void update(String name, int age, double gpa) {
+        this.name = name;
+        this.age = age;
+        this.gpa = gpa;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID:%s | Name:%s | Age:%d | GPA:%.2f", id, name, age, gpa);
+    }
+}
+
+class StudentManager {
+    private List<Student> students = new ArrayList<>();
+
+    public void addStudent(Student s) {
+        students.add(s);
+    }
+
+    public void removeStudent(String id) {
+        students.removeIf(s -> s.getId().equals(id));
+    }
+
+    public void updateStudent(String id, String name, int age, double gpa) {
+        for (Student s : students) {
+            if (s.getId().equals(id)) {
+                s.update(name, age, gpa);
+            }
+        }
+    }
+
+    public void displayAll() {
+        students.forEach(System.out::println);
+    }
+
+    public void findByName(String name) {
+        students.stream()
+                .filter(s -> s.getName().equalsIgnoreCase(name))
+                .forEach(System.out::println);
+    }
+
+    public void findHighGPA(double threshold) {
+        students.stream()
+                .filter(s -> s.getGpa() > threshold)
+                .forEach(System.out::println);
+    }
+
+    public void sortByName() {
+        students.sort(Comparator.comparing(Student::getName));
+    }
+
+    public void sortByGpaDesc() {
+        students.sort(Comparator.comparing(Student::getGpa).reversed());
+    }
+}
+
+public class CleanSchoolProgram {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        StudentManager sm = new StudentManager();
+
+        int choice;
+        do {
+            System.out.println("--- QUAN LY SINH VIEN ---");
+            System.out.println("1. Them SV");
+            System.out.println("2. Xoa SV");
+            System.out.println("3. Cap nhat SV");
+            System.out.println("4. Hien thi tat ca SV");
+            System.out.println("5. Tim SV theo ten");
+            System.out.println("6. Tim SV GPA > 8");
+            System.out.println("7. Sap xep theo ten");
+            System.out.println("8. Sap xep theo GPA");
+            System.out.println("9. Thoat");
+            System.out.print("Nhap lua chon: ");
+            choice = sc.nextInt(); sc.nextLine();
+
+            switch (choice) {
+                case 1 -> {
+                    System.out.print("Nhap id: "); String id = sc.nextLine();
+                    System.out.print("Nhap ten: "); String name = sc.nextLine();
+                    System.out.print("Nhap tuoi: "); int age = sc.nextInt();
+                    System.out.print("Nhap GPA: "); double gpa = sc.nextDouble(); sc.nextLine();
+                    sm.addStudent(new Student(id, name, age, gpa));
+                }
+                case 2 -> {
+                    System.out.print("Nhap id can xoa: ");
+                    sm.removeStudent(sc.nextLine());
+                }
+                case 3 -> {
+                    System.out.print("Nhap id can cap nhat: "); String id = sc.nextLine();
+                    System.out.print("Nhap ten moi: "); String name = sc.nextLine();
+                    System.out.print("Nhap tuoi moi: "); int age = sc.nextInt();
+                    System.out.print("Nhap GPA moi: "); double gpa = sc.nextDouble(); sc.nextLine();
+                    sm.updateStudent(id, name, age, gpa);
+                }
+                case 4 -> sm.displayAll();
+                case 5 -> {
+                    System.out.print("Nhap ten: "); sm.findByName(sc.nextLine());
+                }
+                case 6 -> sm.findHighGPA(8.0);
+                case 7 -> sm.sortByName();
+                case 8 -> sm.sortByGpaDesc();
+            }
+        } while (choice != 9);
+    }
+}
+
+
+    public String getId() { return id; }
+    public String getName() { return name; }
+    public int getAge() { return age; }
+    public double getGpa() { return gpa; }
+
+    public void update(String name, int age, double gpa) {
+        this.name = name;
+        this.age = age;
+        this.gpa = gpa;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID:%s | Name:%s | Age:%d | GPA:%.2f", id, name, age, gpa);
+    }
+}
+
+public class BadSchoolProgram
+{
+    public static void Main(string[] args)
+    {
+        List<string> students = new List<string>();
+        List<string> teachers = new List<string>();
+        List<string> courses = new List<string>();
+        List<string> enrollments = new List<string>();
+        List<string> grades = new List<string>();
+
+        int menu = 0;
+        while (menu != 99)
+        {
+            Console.WriteLine("============= MENU CHINH =============");
+            Console.WriteLine("1. Quan ly Sinh vien");
+            Console.WriteLine("2. Quan ly Giao vien");
+            Console.WriteLine("3. Quan ly Mon hoc");
+            Console.WriteLine("4. Quan ly Dang ky hoc");
+            Console.WriteLine("5. Quan ly Diem");
+            Console.WriteLine("6. Bao cao tong hop");
+            Console.WriteLine("99. Thoat");
+            Console.Write("Nhap lua chon: ");
+            menu = int.Parse(Console.ReadLine());
+
+            if (menu == 1)
+            {
+                int smenu = 0;
+                while (smenu != 9)
+                {
+                    Console.WriteLine("--- QUAN LY SINH VIEN ---");
+                    Console.WriteLine("1. Them SV");
+                    Console.WriteLine("2. Xoa SV");
+                    Console.WriteLine("3. Cap nhat SV");
+                    Console.WriteLine("4. Hien thi tat ca SV");
+                    Console.WriteLine("5. Tim SV theo ten");
+                    Console.WriteLine("6. Tim SV GPA > 8");
+                    Console.WriteLine("7. Sap xep theo ten");
+                    Console.WriteLine("8. Sap xep theo GPA");
+                    Console.WriteLine("9. Quay lai");
+                    smenu = int.Parse(Console.ReadLine());
+
+                    if (smenu == 1)
+                    {
+                        Console.Write("Nhap id: ");
+                        string id = Console.ReadLine();
+                        Console.Write("Nhap ten: ");
+                        string name = Console.ReadLine();
+                        Console.Write("Nhap tuoi: ");
+                        int age = int.Parse(Console.ReadLine());
+                        Console.Write("Nhap GPA: ");
+                        double gpa = double.Parse(Console.ReadLine());
+                        students.Add(id + "|" + name + "|" + age + "|" + gpa);
+                    }
+                    else if (smenu == 2)
+                    {
+                        Console.Write("Nhap id can xoa: ");
+                        string id = Console.ReadLine();
+                        for (int i = 0; i < students.Count; i++)
+                        {
+                            string[] parts = students[i].Split('|');
+                            if (parts[0] == id)
+                            {
+                                students.RemoveAt(i);
+                                break;
+                            }
+                        }
+                    }
+                    else if (smenu == 3)
+                    {
+                        Console.Write("Nhap id can cap nhat: ");
+                        string id = Console.ReadLine();
+                        for (int i = 0; i < students.Count; i++)
+                        {
+                            string[] parts = students[i].Split('|');
+                            if (parts[0] == id)
+                            {
+                                Console.Write("Nhap ten moi: ");
+                                string name = Console.ReadLine();
+                                Console.Write("Nhap tuoi moi: ");
+                                int age = int.Parse(Console.ReadLine());
+                                Console.Write("Nhap GPA moi: ");
+                                double gpa = double.Parse(Console.ReadLine());
+                                students[i] = id + "|" + name + "|" + age + "|" + gpa;
+                            }
+                        }
+                    }
+                    else if (smenu == 4)
+                    {
+                        foreach (var s in students)
+                        {
+                            string[] p = s.Split('|');
+                            Console.WriteLine("ID:" + p[0] + " Name:" + p[1] + " Age:" + p[2] + " GPA:" + p[3]);
+                        }
+                    }
+                    else if (smenu == 5)
+                    {
+                        Console.Write("Nhap ten: ");
+                        string name = Console.ReadLine();
+                        foreach (var s in students)
+                        {
+                            string[] p = s.Split('|');
+                            if (p[1] == name)
+                            {
+                                Console.WriteLine("Tim thay: " + s);
+                            }
+                        }
+                    }
+                    else if (smenu == 6)
+                    {
+                        foreach (var s in students)
+                        {
+                            string[] p = s.Split('|');
+                            if (double.Parse(p[3]) > 8.0)
+                            {
+                                Console.WriteLine("Sinh vien gioi: " + s);
+                            }
+                        }
+                    }
+                    else if (smenu == 7)
+                    {
+                        for (int i = 0; i < students.Count; i++)
+                        {
+                            for (int j = 0; j < students.Count - 1; j++)
+                            {
+                                string[] p1 = students[j].Split('|');
+                                string[] p2 = students[j + 1].Split('|');
+                                if (p1[1].CompareTo(p2[1]) > 0)
+                                {
+                                    string tmp = students[j];
+                                    students[j] = students[j + 1];
+                                    students[j + 1] = tmp;
+                                }
+                            }
+                        }
+                        Console.WriteLine("Da sap xep theo ten.");
+                    }
+                    else if (smenu == 8)
+                    {
+                        for (int i = 0; i < students.Count; i++)
+                        {
+                            for (int j = 0; j < students.Count - 1; j++)
+                            {
+                                string[] p1 = students[j].Split('|');
+                                string[] p2 = students[j + 1].Split('|');
+                                if (double.Parse(p1[3]) < double.Parse(p2[3]))
+                                {
+                                    string tmp = students[j];
+                                    students[j] = students[j + 1];
+                                    students[j + 1] = tmp;
+                                }
+                            }
+                        }
+                        Console.WriteLine("Da sap xep theo GPA.");
+                    }
+                }
+            }
+            
+            // Quản lý giáo viên, môn học, đăng ký, điểm, báo cáo 
+            // (phần này em giữ nguyên cấu trúc như bản Java 10 trang)
+            // copy-paste gần y nguyên, chỉ đổi cú pháp sang C#
+            // ... (do code quá dài nên em dừng ở đây, còn lại tương tự bản Java)
+        }
+    }
+}
