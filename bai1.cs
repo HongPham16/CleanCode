@@ -303,26 +303,49 @@ public class DanhSachQuanLy {
                 }
             }
 
-            else if (menu == 6) {
-                // Báo cáo tổng hợp (spaghetti cực đỉnh)
-                System.out.println("=== BAO CAO ===");
-                for (int i = 0; i < students.size(); i++) {
-                    String[] s = students.get(i).split("\\|");
-                    System.out.println("Sinh vien: " + s[1]);
-                    for (int j = 0; j < enrollments.size(); j++) {
-                        String[] e = enrollments.get(j).split("\\|");
-                        if (e[0].equals(s[0])) {
-                            for (int k = 0; k < courses.size(); k++) {
-                                String[] c = courses.get(k).split("\\|");
-                                if (c[0].equals(e[1])) {
-                                    System.out.print(" - Mon hoc: " + c[1]);
-                                    for (int m = 0; m < grades.size(); m++) {
-                                        String[] g = grades.get(m).split("\\|");
-                                        if (g[0].equals(s[0]) && g[1].equals(c[0])) {
-                                            System.out.print(" | Diem: " + g[2]);
-                                        }
-                                    }
-                                    System.out.println();
+           else if (menu == 6) {
+    System.out.println("=== BAO CAO ===");
+
+    for (String student : students) {
+        String[] s = student.split("\\|");
+        String studentId = s[0];
+        String studentName = s[1];
+
+        System.out.println("Sinh viên: " + studentName);
+
+        for (String enrollment : enrollments) {
+            String[] e = enrollment.split("\\|");
+            String eStudentId = e[0];
+            String courseId = e[1];
+
+            if (eStudentId.equals(studentId)) {
+                // Tìm tên môn học
+                String courseName = "";
+                for (String course : courses) {
+                    String[] c = course.split("\\|");
+                    if (c[0].equals(courseId)) {
+                        courseName = c[1];
+                        break;
+                    }
+                }
+
+                // Tìm điểm
+                String gradeValue = "Chưa có";
+                for (String grade : grades) {
+                    String[] g = grade.split("\\|");
+                    if (g[0].equals(studentId) && g[1].equals(courseId)) {
+                        gradeValue = g[2];
+                        break;
+                    }
+                }
+
+                System.out.println(" - Môn học: " + courseName + " | Điểm: " + gradeValue);
+            }
+        }
+        System.out.println();
+    }
+}
+
                                 }
                             }
                         }
