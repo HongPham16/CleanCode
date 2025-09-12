@@ -18,6 +18,9 @@ public class BadSchoolProgram
         List<string> enrollments = new List<string>();
         List<string> grades = new List<string>();
 
+        // TEST branch bai2.cs
+
+
         int menu = 0;
         while (menu != 99)
         {
