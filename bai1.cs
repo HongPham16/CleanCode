@@ -27,7 +27,7 @@ public class DanhSachQuanLy {
             System.out.println("99. Thoat");
             System.out.print("Nhap lua chon: ");
             menu = sc.nextInt(); sc.nextLine();
-
+        // kiem tra 1 tí điều kiện
             if (menu == 1) {
                 // Quản lý sinh viên
                 int smenu = 0;
