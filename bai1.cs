@@ -10,7 +10,7 @@ public class DanhSachQuanLy {
 
         // Danh sách dữ liệu: lưu sinh viên, giáo viên, môn học, đăng ký, điểm...
         ArrayList<String> students = new ArrayList<String>();
-        ArrayList<String> teachers = new ArrayList<String>();
+        ArrayList<Teachers> teachers = new ArrayList<Teachers>();
         ArrayList<String> courses = new ArrayList<String>();
         ArrayList<String> enrollments = new ArrayList<String>();
         ArrayList<String> grades = new ArrayList<String>();
