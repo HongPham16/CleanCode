@@ -7,6 +7,7 @@ import java.util.*;
 public class DanhSachQuanLy {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        // sdfdss
 
         // Danh sách dữ liệu: lưu sinh viên, giáo viên, môn học, đăng ký, điểm...
         ArrayList<String> students = new ArrayList<String>();
