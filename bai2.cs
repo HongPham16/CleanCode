@@ -17,7 +17,7 @@ public class BadSchoolProgram
         List<string> courses = new List<string>();
         List<string> enrollments = new List<string>();
         List<string> grades = new List<string>();
-
+        //Danh sách quản lý Sinh Viên, giáo viên, môn học, điểm...
         int menu = 0;
         while (menu != 99)
         {
